@@ -214,6 +214,66 @@ void Runner::SaveData()
 void Runner::EntityData()
 {
 	std::fstream file;
+	std::string buffer = "";
+	std::string myPath = "monsters.txt";
+	std::string input;
+	bool quit = true;
+	int counter = 0;
+	Entity entity;
+	file.open(myPath, std::ios::in | std::ios::_Nocreate);
+	while (std::getline(file, buffer))
+	{
+		if (buffer[0] != '\0')
+		{
+			std::string tmp = "";
+			counter++;
+			switch (counter)
+			{
+			case 1:
+				for (size_t i = 0; i < buffer.length() + 1; i++)
+				{
+					if (buffer[i] != '@')
+						tmp += buffer[i];
+				}
+				std::cout << "\n\nName: " << tmp << std::endl;
+				break;
+			case 2:
+				entity.hitpoints = std::stof(buffer);
+				std::cout << "Health: " << entity.hitpoints << std::endl;
+				break;
+			case 3:
+				entity.armor = std::stof(buffer);
+				std::cout << "Armor: " << entity.armor << std::endl;
+				break;
+			case 4:
+				entity.strength = std::stoi(buffer);
+				std::cout << "Strength: " << entity.strength << std::endl;
+				break;
+			case 5:
+				entity.defense = std::stoi(buffer);
+				std::cout << "Defense: " << entity.defense << std::endl;
+				break;
+			case 6:
+				entity.agility = std::stoi(buffer);
+				std::cout << "Agility: " << entity.agility << std::endl;
+				break;
+			case 7:
+				entity.luck = std::stoi(buffer);
+				std::cout << "Luck: " << entity.luck << std::endl;
+				counter = 0;
+				break;
+			}
+		}
+	}
+	file.clear();
+	file.close();
+	std::cout << "Type anythine to quit >";
+	while(quit)
+	{
+		std::cin >> input;
+		if (input != "")
+			quit = false;
+	}
 }
 
 void Runner::LoadBinaray(std::string myPath, saveData &value)

@@ -43,6 +43,10 @@ int main()
 			system("CLS");
 			run.CommaSeparatedValues();
 			break;
+		case 7:
+			system("CLS");
+			run.EntityData();
+			break;
 		}
 	}
 	system("CLS");
