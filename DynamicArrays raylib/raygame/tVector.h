@@ -102,7 +102,7 @@ inline size_t tVector<type>::size_capacity() const
 template<typename type>
 inline bool tVector<type>::empty() const
 {
-	if (arrSize > 0)
+	if (arrSize <= 0)
 		return true;
 	else
 		return false;
