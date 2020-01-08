@@ -21,8 +21,13 @@ public:
 	type &at(size_t index); // returns the element at the given element
 	size_t size() const; // returns the element at the given elements
 	size_t size_capacity() const; // returns the maxium number of elements we can store
+	bool empty() const;   // Returns true if the vector contains no elements.
+	void resize(size_t);  // Resizes the vector to contain the given number of elements.
+	void shrink_to_fit(); // Resizes the vector's capacity to match its size.
+	void clear();         // Empties the vector (all elements are destroyed in this process)
 	// Operators
 	tVector& operator=(const tVector &vec);   // copies the contents of the provided vector into this vector
+	type& operator[] (size_t index); // returns the object at the given index
 	// Constructers and Destructer
 	tVector(const tVector &vec);              // copy constructs a vector from another
 	tVector(); // intializes the vectors default values
@@ -57,7 +62,10 @@ inline void tVector<type>::push_back(const type & value)
 	if(arrSize >= arrCapacity)
 	{
 		//increase array capacity here
-		reserve(arrSize*GROWTH_FACTOR);
+		if(arrSize != 0)
+			reserve(arrSize*GROWTH_FACTOR);
+		else
+			reserve(1);
 	}
 	arr[arrSize] = value;
 	arrSize++;
@@ -76,7 +84,7 @@ inline void tVector<type>::pop_back()
 template<typename type>
 inline type & tVector<type>::at(size_t index)
 {
-	assert(index < arrSize);
+	assert(index < arrSize && index >= 0);
 	return arr[index];
 }
 
@@ -93,11 +101,98 @@ inline size_t tVector<type>::size_capacity() const
 }
 
 template<typename type>
+inline bool tVector<type>::empty() const
+{
+	if (arrSize > 0)
+		return true;
+	else
+		return false;
+}
+
+template<typename type>
+inline void tVector<type>::resize(size_t value)
+{
+	if(value > 0)
+	{
+		type *nArr = new type[value];
+		if(value <= arrSize)
+		{
+			for (size_t i = 0; i < value; ++i)
+			{
+				nArr[i] = arr[i];
+			}
+			arrSize = value;
+		}else
+		{
+			for (size_t i = 0; i < arrSize; ++i)
+			{
+				nArr[i] = arr[i];
+			}
+		}
+		arrCapacity = value;
+		delete[] arr;
+		arr = nArr;
+	}
+}
+
+template<typename type>
+inline void tVector<type>::shrink_to_fit()
+{
+	if(arrSize > 0)
+	{
+		arrCapacity = arrSize;
+		type *nArr = new type[arrSize];
+		for(size_t i = 0; i < arrSize; ++i)
+		{
+			nArr[i] = arr[i];
+		}
+		delete[] arr;
+		arr = nArr;
+	}
+}
+
+template<typename type>
+inline void tVector<type>::clear()
+{
+	if(arrSize > 0)
+	{
+		for (size_t i = 0; i < arrSize; ++i )
+		{
+			arr[i].~type();
+		}
+		arrSize = 0;
+	}
+}
+
+
+template<typename type>
+inline tVector<type> & tVector<type>::operator=(const tVector & vec)
+{
+	arr = new type[vec.size_capacity()];
+	for (size_t i = 0; i < vec.size(); ++i)
+	{
+		arr[i] = vec.arr[i];
+	}
+	arrCapacity = vec.arrCapacity;
+	arrSize = vec.arrSize;
+}
+
+template<typename type>
+inline type & tVector<type>::operator[](size_t index)
+{
+	return arr[index];
+}
+
+template<typename type>
 inline tVector<type>::tVector(const tVector & vec)
 {
-	this->arr = vec.arr;
-	this->arrCapacity = vec.arrCapacity;
-	this->arrSize = vec.arrSize;
+	arr = new type[vec.size_capacity()];
+	for (size_t i = 0; i < vec.size(); ++i)
+	{
+		arr[i] = vec.arr[i];
+	}
+	arrCapacity = vec.arrCapacity;
+	arrSize = vec.arrSize;
 }
 
 template<typename type>
