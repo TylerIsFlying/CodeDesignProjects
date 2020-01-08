@@ -1,16 +1,12 @@
-/*******************************************************************************************
-*
-*   raylib [core] example - basic window
-*
-*   This example has been created using raylib 1.0 (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
-*   Copyright (c) 2013-2016 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
 
 #include "raylib.h"
-
+#include "tVector.h"
+#include <string>
+struct Holder
+{
+	Texture texture;
+	Vector2 position;
+};
 int main()
 {
 	// Initialization
@@ -21,24 +17,32 @@ int main()
 	InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
 	SetTargetFPS(60);
+	std::string presetTextures[3]{ "/resources/panda.png",
+		"/resources/Round/pig.png","/resources/Round/snake.png"};
+	tVector<Holder> holders;
+	int clickCounter = 0;
 	//--------------------------------------------------------------------------------------
 
 	// Main game loop
 	while (!WindowShouldClose())    // Detect window close button or ESC key
 	{
 		// Update
-		//----------------------------------------------------------------------------------
-		// TODO: Update your variables here
-		//----------------------------------------------------------------------------------
-
+		if(IsMouseButtonDown(MOUSE_RIGHT_BUTTON) | IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+		{
+			clickCounter++;
+			Holder tmp;
+			tmp.position = GetMousePosition();
+			tmp.texture = LoadTexture(presetTextures[0].c_str());
+			holders.push_back(tmp);
+		}
 		// Draw
 		//----------------------------------------------------------------------------------
 		BeginDrawing();
-
+		for (size_t i = 0; i < clickCounter; ++i)
+		{
+			DrawTexture(holders[i].texture, holders[i].position.x, holders[i].position.y, WHITE);
+		}
 		ClearBackground(RAYWHITE);
-
-		DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-
 		EndDrawing();
 		//----------------------------------------------------------------------------------
 	}
