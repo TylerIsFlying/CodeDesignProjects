@@ -4,8 +4,8 @@
 #include "BubbleSort.h"
 int main()
 {
-	BubbleSort sort("highscores.cvs",',');
-	sort.printStatus(sort.scores);
+	Sorting sort("highscores.cvs",',');
+	sort.topScores(50);
 	while (true);
 	return 0;
 }

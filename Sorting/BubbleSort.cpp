@@ -2,7 +2,7 @@
 
 
 
-void BubbleSort::LoadHighData(std::string path, const char characterSort)
+void Sorting::LoadHighData(std::string path, const char characterSort)
 {
 	std::fstream file;
 	std::string buffer;
@@ -51,7 +51,7 @@ void BubbleSort::LoadHighData(std::string path, const char characterSort)
 	file.close();
 }
 
-void BubbleSort::LoadOrderScores()
+void Sorting::LoadOrderScoresBubble()
 {
 	// Bubble sorting
 	bool isSorted = false; // used to see if it is sorted yet
@@ -71,13 +71,43 @@ void BubbleSort::LoadOrderScores()
 	}
 }
 
-BubbleSort::BubbleSort(std::string path, const char characterSort)
+void Sorting::LoadOrderScoresInsert()
+{
+	// insert swap
+	int j = 0;
+	int keyValue = 0;
+	for(int i = 0; i < scores.size(); ++i)
+	{
+		keyValue = i;
+		if (i - 1 > 0)
+			j = i - 1;
+		while (j >= 0 && scores[j].score > scores[keyValue].score)
+		{
+			swap(scores, j, keyValue);
+			keyValue = j--;
+		}
+	}
+}
+
+void Sorting::MergeSort()
+{
+	// try this video for merge sorting https://www.youtube.com/watch?v=KF2j-9iSf4Q&feature=youtu.be
+	int startLeft = 0;
+	int endRight = scores.size()-1;
+	int middle = (startLeft+endRight)/2;
+	int startRight = middle+1;
+	int endLeft = middle;
+	// above is the basic idea will make more functions for merge sorting so it is a bit better
+}
+
+Sorting::Sorting(std::string path, const char characterSort)
 {
 	LoadHighData(path, characterSort);
-	LoadOrderScores();
+	//LoadOrderScoresBubble();
+	LoadOrderScoresInsert();
 }
 
 
-BubbleSort::~BubbleSort()
+Sorting::~Sorting()
 {
 }
