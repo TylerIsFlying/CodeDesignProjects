@@ -1,20 +1,23 @@
 #include <iostream>
-#include "tForwardList.h"
+#include "tList.h"
 #include <string>
 int main()
 {
-	tForwardList<int> listOne;
+	tList<int> listOne;
 	listOne.push_front(110);
+	/*
+	listOne.push_front(110);
+	//listOne.push_back(5);
+	//listOne.push_back(6);
 	listOne.push_front(25);
-	listOne.push_front(150);
-	listOne.push_front(440);
-	listOne.push_front(25);
-	listOne.push_front(10);
-	listOne.push_front(30);
-	listOne.push_front(10);
-	listOne.pop_front();
-	listOne.remove(25);
-	tForwardList<int> listTwo;
+	listOne.push_front(26);
+	listOne.push_back(12);
+	listOne.push_front(28);
+	listOne.push_front(29);
+	listOne.push_back(13);
+	*/
+	listOne.pop_back();
+	tList<int> listTwo;
 	listTwo.push_front(1);
 	listTwo.push_front(2);
 	listTwo.push_front(2);
@@ -24,7 +27,7 @@ int main()
 	listTwo.push_front(2);
 	listTwo.push_front(2);
 	listTwo.push_front(2);
-	listTwo.resize(20);
+	listTwo.resize(5);
 	for(auto it = listOne.begin(); it != listOne.end(); ++it)
 	{
 		std::cout << "VALUE: " << *it << std::endl;

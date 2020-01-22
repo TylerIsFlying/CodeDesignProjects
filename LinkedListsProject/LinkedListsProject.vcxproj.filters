@@ -18,12 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tForwardList.cpp">
+    <ClCompile Include="tList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tForwardList.h">
+    <ClInclude Include="tList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
