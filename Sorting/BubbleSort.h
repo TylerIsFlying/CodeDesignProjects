@@ -5,17 +5,6 @@
 #include <fstream>
 class Sorting
 {
-private:
-	//Variables
-	// Functions
-	void LoadHighData(std::string path, const char characterSort); // loads the highscore entry data from the cvs
-	void LoadOrderScoresBubble(); // orders the scores in top scores from least to greatest
-	void LoadOrderScoresInsert(); // orders the scores in top scores from least to greatest
-	void MergeSort(); // basic merge sorting method
-	template <typename type>
-	void swap(std::vector<type> &arr, int a, int b); // swaps a and b in the array
-	template <typename type>
-	void copy(std::vector<type> &a, std::vector<type> &b); // copys a vector
 public:
 	struct HighScoreEntry
 	{
@@ -31,7 +20,33 @@ public:
 	// Constructer and Destructer
 	Sorting(std::string path, const char characterSort);
 	~Sorting();
+private:
+	//Variables
+	// Functions
+	void LoadHighData(std::string path, const char characterSort); // loads the highscore entry data from the cvs
+	void LoadOrderScoresBubble(); // orders the scores in top scores from least to greatest
+	void LoadOrderScoresInsert(); // orders the scores in top scores from least to greatest
+	void MergeSort(std::vector<HighScoreEntry> &arr); // basic merge sorting method
+	void MergeSort(std::vector<HighScoreEntry> &arr, size_t leftStart, size_t rightEnd); // basic merge sorting method
+	void MergeHalf(std::vector<HighScoreEntry> &arr,size_t leftStart, size_t middle,size_t rightEnd);
+	template <typename type>
+	void ArrayCopy(std::vector<type> &orgArr, size_t srcPos, std::vector<type> &destArr, size_t destPos, size_t length);
+	template <typename type>
+	void swap(std::vector<type> &arr, int a, int b); // swaps a and b in the array
+	template <typename type>
+	void copy(std::vector<type> &a, std::vector<type> &b); // copys a vector
+	template <typename type>
+	void emptyVector(std::vector<type> &vec, size_t length); // makes a empty vector
 };
+
+template<typename type>
+inline void Sorting::ArrayCopy(std::vector<type> &orgArr, size_t srcPos, std::vector<type> &destArr, size_t destPos, size_t length)
+{
+	for(size_t i = 0; i < length; ++i)
+	{
+		destArr[destPos++] = orgArr[srcPos++];
+	}
+}
 
 template<typename type>
 inline void Sorting::swap(std::vector<type> &arr, int a, int b)
@@ -47,6 +62,15 @@ inline void Sorting::copy(std::vector<type>& a, std::vector<type>& b)
 	for(size_t i = 0; i < a.size(); ++i)
 	{
 		b.push_back(a[i]);
+	}
+}
+template<typename type>
+inline void Sorting::emptyVector(std::vector<type> &vec, size_t length)
+{
+	for(size_t i = 0; i < length; i++)
+	{
+		type t;
+		vec.push_back(t);
 	}
 }
 inline void Sorting::printStatus(std::vector<HighScoreEntry>& v, int start, int end)
