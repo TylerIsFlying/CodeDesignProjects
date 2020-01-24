@@ -5,17 +5,17 @@ int main()
 {
 	tList<int> listOne;
 	listOne.push_front(110);
-	/*
+	
 	listOne.push_front(110);
-	//listOne.push_back(5);
-	//listOne.push_back(6);
+	listOne.push_back(5);
+	listOne.push_back(6);
 	listOne.push_front(25);
 	listOne.push_front(26);
 	listOne.push_back(12);
 	listOne.push_front(28);
 	listOne.push_front(29);
 	listOne.push_back(13);
-	*/
+	
 	listOne.pop_back();
 	tList<int> listTwo;
 	listTwo.push_front(1);
@@ -28,7 +28,7 @@ int main()
 	listTwo.push_front(2);
 	listTwo.push_front(2);
 	listTwo.resize(5);
-	for(auto it = listOne.begin(); it != listOne.end(); ++it)
+	for(auto it = listOne.begin(); it != nullptr; it++)
 	{
 		std::cout << "VALUE: " << *it << std::endl;
 	}

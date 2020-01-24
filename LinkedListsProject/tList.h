@@ -33,6 +33,8 @@ public:
 
 		iterator& operator++();                     // pre-increment (returns a reference to this iterator after it is incremented)
 		iterator operator++(int);                   // post-increment (returns an iterator to current node while incrementing the existing iterator)
+		iterator& operator--();                     // pre-increment (returns a reference to this iterator after it is incremented)
+		iterator operator--(int);                   // post-increment (returns an iterator to current node while incrementing the existing iterator)
 
 
 	};
@@ -110,7 +112,7 @@ typename inline tList<type>::iterator tList<type>::begin()
 template<typename type>
 typename inline tList<type>::iterator tList<type>::end()
 {
-	return iterator(nullptr);
+	return iterator(tail);
 }
 template<typename type>
 inline void tList<type>::push_front(const type & val)
@@ -459,6 +461,28 @@ typename inline tList<type>::iterator tList<type>::iterator::operator++(int)
 	{
 		Node * tmp = cur;
 		cur = cur->next;
+		t.cur = tmp;
+	}
+	return t;
+}
+
+template<typename type>
+typename inline tList<type>::iterator & tList<type>::iterator::operator--()
+{
+	if (cur != nullptr)
+		cur = cur->back;
+
+	return *this;
+}
+
+template<typename type>
+typename inline tList<type>::iterator tList<type>::iterator::operator--(int)
+{
+	iterator t;
+	if (cur != nullptr)
+	{
+		Node * tmp = cur;
+		cur = cur->back;
 		t.cur = tmp;
 	}
 	return t;
