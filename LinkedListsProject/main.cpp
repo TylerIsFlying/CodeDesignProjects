@@ -21,6 +21,7 @@ int main()
 	std::cout << "ADDRES ONE: " << &listOne.front() << std::endl;
 	std::cout << "ADDRES TWO: " << &listTwo.front() << std::endl;
 	listTwo.remove(29);
+	listTwo.resize(3);
 	int hello = listOne.front();
 
 	for(auto it = listTwo.end(); it != nullptr; it--)

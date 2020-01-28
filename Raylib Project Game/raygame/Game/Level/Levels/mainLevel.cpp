@@ -11,7 +11,10 @@ void mainLevel::update(float deltaTime)
 		{
 			if ((*it)->place)
 			{
-				(*it)->position = GetMousePosition();
+				Vector2 mPos = Vector2();
+				mPos.x = GetMouseX() - ((*it)->getTexture().width/2);
+				mPos.y = GetMouseY() - ((*it)->getTexture().height / 2);
+				(*it)->position = mPos;
 				currObject = *it;
 				(*it)->update();
 			}
@@ -28,7 +31,7 @@ void mainLevel::update(float deltaTime)
 		// checking if it wants to be moved and if it does now it needs to be placed
 		for (auto it = objectSpawned.begin(); it != nullptr; ++it)
 		{
-			if((*it)->onButton() && IsMouseButtonPressed(MOUSE_MIDDLE_BUTTON))
+			if((*it)->onButton() && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 			{
 				(*it)->place = true;
 				placed = false;
@@ -45,7 +48,10 @@ void mainLevel::update(float deltaTime)
 		{
 			moveButton = false;
 		}
-		oButton.position = GetMousePosition();
+		Vector2 mPos = Vector2();
+		mPos.x = GetMouseX() - (oButton.getRec().width/2);
+		mPos.y = GetMouseY() - (oButton.getRec().height/2);
+		oButton.position = mPos;
 		oButton.update();
 	}else
 	{
