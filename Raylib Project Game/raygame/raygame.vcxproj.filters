@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{46096a8c-2363-42f5-a898-5544286b9f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{15c1792b-5e7e-449d-8291-c4459b71ad63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Level">
+      <UniqueIdentifier>{ea7a4f07-2cd8-4487-a9b5-cb8ddae16b0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Level">
+      <UniqueIdentifier>{26290ed1-90e2-47b2-818b-5afaca4de761}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Level\Levels">
+      <UniqueIdentifier>{e18b3147-0a37-43ac-a8e3-c1f6526f67e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Level\Levels">
+      <UniqueIdentifier>{b4dd407c-d89c-4ff0-ae7d-0942419b3487}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Object">
+      <UniqueIdentifier>{0e1893f3-3f29-4403-874c-4a2f0d0ba3d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Object">
+      <UniqueIdentifier>{c4e7d048-7e1c-4a76-b6aa-7403fb175040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{273d8a57-83ca-4bbe-ad97-1bba052e321d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{16f0341f-4b1f-4bd7-85b5-eb9e16edadd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Game\Object\Objects">
+      <UniqueIdentifier>{49cec1aa-88ae-4d5b-bd5e-335e20b68bf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Object\Objects">
+      <UniqueIdentifier>{b539826f-2858-4d6b-aed3-76c5d0ecde34}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\levelManager.cpp">
+      <Filter>Source Files\Game\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\level.cpp">
+      <Filter>Source Files\Game\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Level\Levels\mainLevel.cpp">
+      <Filter>Source Files\Game\Level\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\object.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\tList.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\button.cpp">
+      <Filter>Source Files\Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Objects\objectInteract.cpp">
+      <Filter>Source Files\Game\Object\Objects</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game\game.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\levelManager.h">
+      <Filter>Header Files\Game\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\level.h">
+      <Filter>Header Files\Game\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Level\Levels\mainLevel.h">
+      <Filter>Header Files\Game\Level\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\object.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\tList.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\button.h">
+      <Filter>Header Files\Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Objects\objectInteract.h">
+      <Filter>Header Files\Game\Object\Objects</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
