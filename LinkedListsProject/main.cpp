@@ -5,7 +5,7 @@ int main()
 {
 	tList<int> listOne;
 	listOne.push_front(110);
-	
+	listOne.push_front(110);
 	listOne.push_front(110);
 	listOne.push_back(5);
 	listOne.push_back(6);
@@ -17,17 +17,12 @@ int main()
 	listOne.push_back(13);
 	
 	listOne.pop_back();
-	tList<int> listTwo;
-	listTwo.push_front(1);
-	listTwo.push_front(2);
-	listTwo.push_front(2);
-	listTwo.push_front(2);
-	listTwo.push_front(2);
-	listTwo.push_front(3);
-	listTwo.push_front(2);
-	listTwo.push_front(2);
-	listTwo.push_front(2);
-	listTwo.resize(2);
+	tList<int> listTwo = listOne;
+	std::cout << "ADDRES ONE: " << &listOne.front() << std::endl;
+	std::cout << "ADDRES TWO: " << &listTwo.front() << std::endl;
+	listTwo.remove(29);
+	int hello = listOne.front();
+
 	for(auto it = listTwo.end(); it != nullptr; it--)
 	{
 		std::cout << "VALUE: " << *it << std::endl;
