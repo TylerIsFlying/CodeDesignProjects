@@ -27,8 +27,8 @@ int main()
 	listTwo.push_front(2);
 	listTwo.push_front(2);
 	listTwo.push_front(2);
-	listTwo.resize(5);
-	for(auto it = listOne.begin(); it != nullptr; it++)
+	listTwo.resize(2);
+	for(auto it = listTwo.end(); it != nullptr; it--)
 	{
 		std::cout << "VALUE: " << *it << std::endl;
 	}

@@ -94,34 +94,34 @@ void Sorting::MergeSort(std::vector<HighScoreEntry> &arr)
 	MergeSort(arr,0, arr.size()-1); // calling merge sort override function for leftStart and rightEnd
 }
 
-void Sorting::MergeSort(std::vector<HighScoreEntry> &arr, size_t leftStart, size_t rightEnd)
+void Sorting::MergeSort(std::vector<HighScoreEntry> &arr, size_t leftStart, size_t end)
 {
-	if (leftStart < rightEnd)
+	if (leftStart < end)
 	{
-		size_t middle = (leftStart + rightEnd) / 2;
+		size_t middle = (leftStart + end) / 2;
 		MergeSort(arr, leftStart, middle);
-		MergeSort(arr, middle + 1, rightEnd);
-		MergeHalf(arr, leftStart, middle, rightEnd);
+		MergeSort(arr, middle + 1, end);
+		MergeHalf(arr, leftStart, middle, end);
 	}
 }
 
-void Sorting::MergeHalf(std::vector<HighScoreEntry> &arr, size_t leftStart, size_t middle, size_t rightEnd)
+void Sorting::MergeHalf(std::vector<HighScoreEntry> &arr, size_t leftStart, size_t middle, size_t end)
 {
 	size_t leftEnd = middle - leftStart + 1;
-	size_t rightStart = rightEnd - middle;
-	std::vector<HighScoreEntry> lArr(leftEnd);
-	std::vector<HighScoreEntry> rArr(rightStart);
+	size_t rightEnd = end - middle;
+	HighScoreEntry *lArr = new HighScoreEntry[leftEnd];
+	HighScoreEntry *rArr = new HighScoreEntry[rightEnd];
 	for(size_t i = 0; i < leftEnd; i++)
 	{
 		lArr[i] = arr[leftStart + i];
 	}
-	for (size_t i = 0; i < rightStart; i++)
+	for (size_t i = 0; i < rightEnd; i++)
 	{
 		rArr[i] = arr[middle + i + 1];
 	}
 	size_t j = 0;
 	size_t i = 0;
-	for(size_t k = leftStart; k < rightEnd; k++)
+	for(size_t k = leftStart; k <= end; k++)
 	{
 		if(j >= rightEnd || (i < leftEnd && lArr[i].score <= rArr[j].score))
 		{
@@ -131,7 +131,8 @@ void Sorting::MergeHalf(std::vector<HighScoreEntry> &arr, size_t leftStart, size
 			arr[k] = rArr[j++];
 		}
 	}
-	
+	delete[] lArr;
+	delete[] rArr;
 }
 
 Sorting::Sorting(std::string path, const char characterSort)
@@ -140,8 +141,7 @@ Sorting::Sorting(std::string path, const char characterSort)
 	//LoadOrderScoresBubble();
 	//LoadOrderScoresInsert();
 
-	scores.resize(5);
-	MergeSort(scores); // need help for this tmr
+	MergeSort(scores); // some merge sorting :)
 }
 
 

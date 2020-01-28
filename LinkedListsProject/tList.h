@@ -40,8 +40,10 @@ public:
 	};
 
 	// Variables
-	iterator begin();
-	iterator end();
+	iterator begin(); // returns a iterator that starts at the head
+	iterator end(); // returns a iterator that ends at the tail
+	const iterator begin()const; // returns a iterator that starts at the head
+	const iterator end() const; // returns a iterator that ends at the tail
 	//Functions
 	void push_front(const type& val);  // adds element to front (i.e. head)
 	void pop_front();               // removes element from front
@@ -115,6 +117,16 @@ typename inline tList<type>::iterator tList<type>::end()
 	return iterator(tail);
 }
 template<typename type>
+typename inline const tList<type>::iterator tList<type>::begin() const
+{
+	return iterator(head);
+}
+template<typename type>
+typename inline const tList<type>::iterator tList<type>::end() const
+{
+	return iterator(tail);
+}
+template<typename type>
 inline void tList<type>::push_front(const type & val)
 {
 	if (head == nullptr)
@@ -124,8 +136,11 @@ inline void tList<type>::push_front(const type & val)
 		tail = head;
 		tail->back = nullptr;
 		head->back = nullptr;
+		head->next = nullptr;
+		tail->next = nullptr;
 		totalNodes++;
-	}else
+	}
+	else
 	{
 		Node *tmp = new Node;
 		tmp->data = val;
@@ -144,18 +159,20 @@ inline void tList<type>::push_front(const type & val)
 template<typename type>
 inline void tList<type>::pop_front()
 {
-	if(head != nullptr && totalNodes > 1)
+	if (head != nullptr && totalNodes > 1)
 	{
 		Node *tmp = head->next;
 		delete head;
 		head = tmp;
-		head->back = nullptr;
-		totalNodes--;
-	}else
+		if (head != nullptr)
+			head->back = nullptr;
+	}
+	else
 	{
 		head = nullptr;
 		tail = nullptr;
 	}
+	totalNodes--;
 }
 
 template<typename type>
@@ -170,7 +187,7 @@ inline bool tList<type>::empty() const
 template<typename type>
 inline void tList<type>::clear()
 {
-	if(totalNodes > 0)
+	if (totalNodes > 0)
 	{
 		int currentCount = totalNodes;
 		Node *currNode = head;
@@ -198,32 +215,33 @@ inline void tList<type>::resize(size_t newSize)
 	int size = newSize;
 	Node * past = nullptr;
 	//std::cout << currTotal - 1 << std::endl;
-	if(size < currTotal)
+	if (size < currTotal)
 	{
 		for (size_t i = 0; i < currTotal; ++i)
 		{
-			if(currNode != nullptr)
+			if (currNode != nullptr)
 			{
 				Node * tmp = currNode->next;
-				if(i > newSize-1)
+				if (i > newSize - 1)
 				{
 					delete currNode;
 					currNode = nullptr;
 					past->next = nullptr;
 					totalNodes--;
 				}
-				if(currNode != nullptr)
+				if (currNode != nullptr)
 					past = currNode;
 				currNode = tmp;
 			}
 		}
 		tail = past;
-	}else
+	}
+	else
 	{
 		Node * currNode = head;
 		for (size_t i = 0; i < newSize; ++i)
 		{
-			if(i >= currTotal)
+			if (i >= currTotal)
 			{
 				push_blank();
 				totalNodes++;
@@ -273,6 +291,8 @@ inline void tList<type>::push_back(const type & val)
 		tail = head;
 		tail->back = nullptr;
 		head->back = nullptr;
+		head->next = nullptr;
+		tail->next = nullptr;
 		totalNodes++;
 	}
 	else
@@ -298,7 +318,8 @@ inline void tList<type>::pop_back()
 		tail = tmp;
 		tail->next = nullptr;
 		totalNodes--;
-	}else
+	}
+	else
 	{
 		head = nullptr;
 		tail = nullptr;
@@ -308,30 +329,36 @@ inline void tList<type>::pop_back()
 template<typename type>
 inline void tList<type>::remove(const type & val)
 {
-	if(head != nullptr)
+	if (head != nullptr)
 	{
 		Node *currNode = head;
 		Node *pastNode = nullptr;
 		int counter = totalNodes;
-		for(size_t i = 0; i < counter; ++i)
+		for (size_t i = 0; i < counter; ++i)
 		{
-			if(currNode->data != val)
+
+			if (currNode->data != val)
 			{
 				pastNode = currNode;
 				//std::cout << pastNode->data << std::endl;
-			}else
+			}
+			else
 			{
-				if(pastNode != nullptr)
+				if (pastNode != nullptr)
 				{
+
 					Node *tmp = currNode->next;
 					delete currNode;
 					pastNode->next = tmp;
-					tmp->back = pastNode;
+					if (tmp != nullptr)
+						tmp->back = pastNode;
 					currNode = tmp;
 					if (pastNode->next == nullptr)
 						tail = pastNode;
+					totalNodes--;
 					continue;
-				}else
+				}
+				else
 				{
 					currNode = currNode->next;
 					pop_front();
@@ -405,7 +432,8 @@ inline tList<type>::tList()
 template<typename type>
 inline tList<type>::~tList()
 {
-	assert(false && "TODO: tForwardList<T>::~tForwardList<T>()");
+	delete head;
+	delete tail;
 }
 
 template<typename type>
@@ -419,6 +447,7 @@ inline tList<type>::iterator::iterator(Node * startNode)
 {
 	cur = startNode;
 }
+
 
 template<typename type>
 inline bool tList<type>::iterator::operator==(const iterator & rhs) const
@@ -487,3 +516,4 @@ typename inline tList<type>::iterator tList<type>::iterator::operator--(int)
 	}
 	return t;
 }
+
