@@ -16,6 +16,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sorting", "Sorting\Sorting.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Singleton", "Singleton\Singleton.vcxproj", "{199E3BCE-B050-4934-AD1E-5DD89685AA46}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hashing", "Hashing\Hashing.vcxproj", "{AB057304-3C20-4359-97F2-52B7FB992EA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -64,6 +66,14 @@ Global
 		{199E3BCE-B050-4934-AD1E-5DD89685AA46}.Release|x64.Build.0 = Release|x64
 		{199E3BCE-B050-4934-AD1E-5DD89685AA46}.Release|x86.ActiveCfg = Release|Win32
 		{199E3BCE-B050-4934-AD1E-5DD89685AA46}.Release|x86.Build.0 = Release|Win32
+		{AB057304-3C20-4359-97F2-52B7FB992EA3}.Debug|x64.ActiveCfg = Debug|x64
+		{AB057304-3C20-4359-97F2-52B7FB992EA3}.Debug|x64.Build.0 = Debug|x64
+		{AB057304-3C20-4359-97F2-52B7FB992EA3}.Debug|x86.ActiveCfg = Debug|Win32
+		{AB057304-3C20-4359-97F2-52B7FB992EA3}.Debug|x86.Build.0 = Debug|Win32
+		{AB057304-3C20-4359-97F2-52B7FB992EA3}.Release|x64.ActiveCfg = Release|x64
+		{AB057304-3C20-4359-97F2-52B7FB992EA3}.Release|x64.Build.0 = Release|x64
+		{AB057304-3C20-4359-97F2-52B7FB992EA3}.Release|x86.ActiveCfg = Release|Win32
+		{AB057304-3C20-4359-97F2-52B7FB992EA3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
